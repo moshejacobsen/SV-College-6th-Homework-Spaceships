@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] FixedJoystick _joystick;
     [SerializeField] GameObject shot;
     [SerializeField] GameObject shotSpawn;
     [SerializeField] float moveSpeed = 10;
@@ -23,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
             transform.position = new Vector2(transform.position.x, 4.6f);
         else if (transform.position.y < -4.6f)
             transform.position = new Vector2(transform.position.x, -4.6f);
-        transform.Translate(new Vector2(1 * horDir * moveSpeed * Time.deltaTime, 1 * verDir * moveSpeed * Time.deltaTime));
+        transform.Translate(new Vector2(1 * _joystick.Horizontal * moveSpeed * Time.deltaTime, 1 * _joystick.Vertical * moveSpeed * Time.deltaTime));
         GetComponent<Animator>().SetBool("isShooting", false);
     }
     public void Movement(string str)
